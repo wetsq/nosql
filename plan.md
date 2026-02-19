@@ -21,3 +21,26 @@
 
 - User interface with some interaction
 - description of what was challenging in managing data
+
+
+## use cases
+
+1. Get current employees on a unit
+
+2. Create a new mission with units
+
+3. Start shift on an employee on unit
+
+4. End shift on an employee on unit
+
+5. Get status of all units assigned to a mission
+
+6. Change mission code
+
+7. Add a unit to an existing mission
+
+8. Get all subordinates of an employee
+
+9. Get employees of a given unit at the time of a given mission  COMPLEX
+
+10. Set mission as completed and set all unit's status as available COMPLEX
