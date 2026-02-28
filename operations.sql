@@ -1,4 +1,4 @@
--- Queries with psycopg style parameters
+-- Queries for 10 use cases with psycopg style parameters
 
 -- 1. Get current employees on a unit
 
@@ -27,7 +27,7 @@ WHERE employee_id = %s AND unit_id = %s AND end_time IS NULL;
 
 SELECT u.name, u.status
 FROM units u
-JOIN missions m ON u.id = ANY(m.units)
+JOIN missions m ON u.name = ANY(m.units)
 WHERE m.id = %s;
 
 -- 6. Change mission code
@@ -54,7 +54,8 @@ WHERE s.id = %s;
 SELECT e.name, e.position
 FROM employees e
 JOIN employee_on_unit eu ON e.id = eu.employee_id
-JOIN missions m ON eu.unit_id = ANY(m.units)
+JOIN units u ON eu.unit_id = u.id
+JOIN missions m ON u.name = ANY(m.units)
 WHERE m.id = %s AND eu.start_time <= m.created_at AND (eu.end_time IS NULL OR eu.end_time >= m.created_at);
 
 -- 10. Set mission as completed and set all unit's status as available

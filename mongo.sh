@@ -111,8 +111,8 @@ db.employees.findOne(
 # 2. Get status history of a unit on a mission
 
 db.missions.findOne(
-  { _id: 1, "units.name": "Engine 1" },
-  { "units.status_history": 1, _id: 0 }
+  { _id: 1 },
+  { _id: 0, units: { $elemMatch: { name: "Engine 1" } } }
 )
 
 # 3. Add Change employee's position
@@ -120,10 +120,10 @@ db.missions.findOne(
 db.employees.updateOne(
   { _id: 2 },
   {
-    $set: { position: "Paramedic" },
+    $set: { position: "Senior Paramedic" },
     $push: {
       position_history: {
-        position: "Paramedic",
+        position: "Senior Paramedic",
         start_date: new Date()
       }
     }
